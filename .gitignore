@@ -10,3 +10,5 @@ jspm_packages/
 
 # ngrok binary
 ngrok
+
+.DS_Store
