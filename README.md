@@ -26,11 +26,28 @@ The module will help us to perform certain tasks repeatedly at a given schedule 
 
 ## CSV files as persistent data store
 
-I chose to use csv because this is more familiar to the most of IT ops/admin (at least in Korea) while setting up DB can sometimes be too much of a hassle. The csv read/write module I wrote here (`csvReadWrite.js`) has some flexibility about the columns (or fields) but quite rigid in the shape of the data. (An object that has `dataKeys` array and `data` array, and `data` array will have objects that has all the keys shown in `dataKeys` as its elements.)
+I chose to use csv because this is more familiar to the most of IT ops/admin (at least in Korea) while setting up DB can sometimes be too much of a hassle. You can definitely do this with any DBMS too.
 
-We start with two csv files that our automation will read and write.
+The csv read/write module I wrote here (`csvReadWrite.js`) has flexibility to handle any csv files with different data in it, but the shape of the data needs to be an object that has `dataKeys` array and `data` array to be written to csv correctly. `data` array will have objects that has all the keys shown in `dataKeys` as its elements. Below is the example data object:
+
+```javascript
+{
+    dataKeys: ['userName', 'userId', 'groupName', 'groupId', 'expireOn'],
+    data: {
+        userName: 'test1@test.com',
+        userId: '1234',
+        groupName: 'group1',
+        groupId: '234gs',
+        expireOn: '09/01/2021'
+    }
+}
+```
+
+There are two csv files that our automation will read and write.
 
 One is `groupsWithDuration.csv` where we have a list of groups in Okta that has membership expiration requirement. The file also has `duration` column where you specify the group membership duration in days. The other is `membersExpireOn.csv` where we start with no data, but when Okta Event Hook will tell us there is a group membership added, we will record the `userName`, `userId`, `groupName`, `groupId` and calculate the `expireOn` date based on `duration` info from `groupsWithDuration.csv` file.
+
+Once the automation runs, it will create log csv files in the `log` folder only when there are members excluded from groups.
 
 ## Node, Express and other libraries
 
