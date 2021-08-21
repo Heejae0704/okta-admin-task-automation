@@ -51,6 +51,7 @@ module.exports = {
   fetchGroupMembershipRemoval,
 };
 
+// helper function to delay 1 sec when the API rate limit is reached
 async function checkLimitAndDelay(res) {
   if (Number(res.headers.get("x-rate-limit-remaining")) < 5) {
     const limitResetTime = DateTime.fromMillis(
@@ -66,7 +67,6 @@ async function checkLimitAndDelay(res) {
   }
 }
 
-// helper function to delay 1 sec when the API rate limit is reached
 async function delay(millisecond) {
   return new Promise((resolve) =>
     setTimeout(() => {
