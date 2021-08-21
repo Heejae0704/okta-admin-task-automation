@@ -2,7 +2,7 @@
 
 This repository contains a Node/Express sample app to illustrate how you can automate Okta admin tasks with Okta Event Hook and APIs.
 
-The example I used for building app is about automatically removing the group membership of users assigned to 'time-bound' groups where your membership is given only for a certain period. (1, 10 or 30 days)
+The example I used for building app is about automatically removing the group membership of users assigned to 'time-bound' groups where your membership is given only for a certain period. (1, 10 or 30 days) There is no native menu from Okta admin to schedule the group membership removal, but we can build the automation ourselves with Okta Event Hook and Okta APIs.
 
 There are two types of triggers this automation is based upon: **Okta Event Hook** and **Cronjob**.
 
