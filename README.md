@@ -127,11 +127,11 @@ The code is structured to be useful when you have some other automation needs:
 
 ## Disclaimer and a few words
 
-While I work at Okta, this is more of my personal pet project. This repo is not an official okta product in any sense. It started with a few script samples for requests from the customers and partners can quickly pick up and use, and I put some efforts to make myself a bit more familiar to Node environment.
+While I work at Okta, this is more of my personal pet project. This repo is not an official okta product in any sense. It started with a few script samples to help a couple of customers and partners to quickly pick up and use for their custom automation requirements, and I put some extra efforts recently to make it a bit more structured and generic.
 
-The other motivation is to show how flexible Okta can be if you have very basic programming skills. Okta is already a good SaaS product out-of-box with a lot of cool stuff, but with Okta Hook and APIs you basically can do pretty much anything you want if you dare to add a few line of custom code yourself. I am from project manager world who is relatively new to the actual coding. So, if I can do this, you can definitely, too! Let Okta do the heavy lifting and you just tell it what to do.
+The other motivation is to show how flexible Okta can be if you have very basic programming skills. Okta is already a good SaaS product out-of-the-box with a lot of cool stuff, but with Okta Hooks and APIs you basically can do pretty much anything you want if you dare to add a few line of custom code to weave the things yourself. Let Okta do the heavy lifting and you just need to code enough to tell it what to do. I am from project manager world who is relatively new to the actual coding. So, if I can do this, you can definitely, too!
 
-The current automation setup here is a bit different from the original customer requests to make it intentionally compatible to one of the Okta Workflows Templates. You can find exactly the Workflows template that will do almost the same, but without coding!
+The current automation setup here is a bit different from my script for the original customer requests. I made it intentionally compatible to one of the Okta Workflows Templates. You can find the Workflows template that will do almost the same, but without coding!
 
 ## Okta Workflows
 
