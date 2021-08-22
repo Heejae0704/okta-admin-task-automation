@@ -1,5 +1,7 @@
 # Node/Express Okta Admin Task Automaton using Okta Event Hook, Cronjob and CSV files
 
+_Read this in other languages: [English](README.md), [한국어](README.ko.md)_
+
 This repository contains a Node/Express sample app to illustrate how you can automate Okta admin tasks with Okta Event Hook and APIs.
 
 The example I used for building app is about automatically removing the group membership of users assigned to 'time-bound' groups where your membership is given only for a certain period. (1, 10 or 30 days) There is no native menu from Okta admin to schedule the group membership removal, but we can build the automation ourselves with Okta Event Hook and Okta APIs.
@@ -33,13 +35,22 @@ The csv read/write module I wrote here (`csvReadWrite.js`) has flexibility to ha
 ```javascript
 {
     dataKeys: ['userName', 'userId', 'groupName', 'groupId', 'expireOn'],
-    data: {
-        userName: 'test1@test.com',
-        userId: '1234',
-        groupName: 'group1',
-        groupId: '234gs',
-        expireOn: '09/01/2021'
-    }
+    data: [
+            {
+                userName: 'test1@test.com',
+                userId: '1234',
+                groupName: 'group1',
+                groupId: '234gs',
+                expireOn: '09/01/2021'
+            },
+            {
+                userName: 'test2@test.com',
+                userId: '2324',
+                groupName: 'group1',
+                groupId: '234gs',
+                expireOn: '08/20/2021'
+            },
+          ]
 }
 ```
 
@@ -137,7 +148,7 @@ When you use serverless options though, it is important to understand you may ne
 
 The code is structured to be useful when you have some other automation needs:
 
-- The csv file read and write logic can be used for other csv files as long as it has proper headers.
+- The csv file read and write logic can be used for other csv files as long as they have proper headers.
 - `/oktaEvents` endpoint can have multiple events, and according to the type of event, you can add more functions to make this automation to do different things.
 - The cron task is wrapped as a function, so you can add any many functions if needed to the same schedule.
 - There is a small consideration to be mindful for the API rate limit. (`checkLimitAndDelay` function in `fetchHandlers.js` file) The process that requires to call Okta API will hold until the next rate limit reset time if there is less than 5 calls left till the rate limit.
@@ -159,15 +170,3 @@ There is `no-code` alternative to achieve this kind of custom automation, which 
 ![workflow image](https://www.okta.com/sites/default/files/Workflows-Example.gif)
 
 Workflows retains the flexibilities of custom logic, while minimizing the maintenance requirements of the environment and code itself. I highly recommend to look into this if you have a lot of custom requirements revolving around identity and access management in your organization!
-
-## License
-
-The MIT License (MIT)
-
-Copyright (c) 2021 Heejae Chang
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
